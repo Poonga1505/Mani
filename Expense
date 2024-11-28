@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+ <title>
+
+ EXPENDITURE MANAGER
+
+ </title>
+
+ <style>
+
+ Body {
+
+ Margin: 4rem;
+
+ Background-image: url(‘C:\\Users\\vivek\\Downloads\\kk.jpg’); /* Replace ‘your-
+
+image-url.jpg’ with the actual URL or path to your background image */
+
+ Background-size: cover; /* This property ensures the background image covers the 
+
+entire viewport */
+
+ Background-repeat: no-repeat; /* Prevents the background image from repeating */
+
+ Background-attachment: fixed;
+
+ }
+
+ #formContainer {
+
+ Margin-bottom: 20px;
+
+ Background-color: rgba(255, 255, 255, 0); /* Add a semi-transparent white background 
+
+to the form container for better readability */
+
+ Padding: 20px;
+
+ Border-radius: 10px;
+
+ }
+
+ Label {
+
+ Display: block;
+
+ Margin-top: 10px;
+
+ }
+
+ Input,
+
+ Textarea {
+
+ Width: 300px;
+
+ Padding: 8px;
+
+ Margin-top: 5px;
+
+ Border: 1px solid #ae76e4;
+
+ Border-radius: 4px;
+
+ }
+
+ Button {
+
+ Margin: 10px;
+
+ Padding: 8px 16px;
+
+ Background-color: #168aad;
+
+ Color: #f4f2fd;
+
+ Border: none;
+
+ Border-radius: 4px;
+
+ Cursor: pointer;
+
+ }
+
+ Button:hover {
+
+ Background-color: #f80a0a;
+}
+Table {
+
+ Border-collapse: collapse;
+
+ Margin-bottom: 20px;
+
+ Width: 100%;
+
+ }
+
+ Th,
+
+ Td {
+
+ Border: 1px solid #300505;
+
+ Padding: 8px;
+
+ Text-align: left;
+
+ }
+
+ Th {
+
+ Background-color: #de98ec;
+
+ Color: #000000;
+
+ }
+
+ </style>
+
+</head>
+
+<body>
+
+ <center>
+
+ <h1 style=”color: rgb(39, 14, 24);”>
+
+ <u> EXPENDITURE MANAGER </u>
+
+ </h1>
+
+ <h2 style=”color: rgb(12, 80, 10);”>
+
+ <u>ENTER THE DETAILS</u>
+
+ </h2>
+
+ <div id=”formContainer”>
+
+ <label for=”dateInput”>Date:</label>
+
+ <input type=”date” id=”dateInput” placeholder=”Enter the date”>
+
+ <label for=”expenseInput”>Expense:</label>
+
+ <input type=”number” id=”expenseInput” placeholder=”Enter the expense”>
+
+ <label for=”incomeInput”>Income:</label>
+
+ <input type=”number” id=”incomeInput” placeholder=”Enter the income”><br><br>
+
+ <button onclick=”addData()”>Add</button>
+
+ <button onclick=”window.print()”>Print details</button>
+
+ </div>
+
+ <table id=”outputTable”>
+
+ <tr>
+
+ <th>Date</th>
+
+ <th>Expense</th>
+
+ <th>Income</th>
+
+ <th>Total</th>
+
+ <th>Action</th>
+
+ </tr>
+
+ </table>
+
+ </center>
+
+ <script>
+
+ Function addData() {
+
+ // Get input values
+
+ Let date = (document.getElementById(“dateInput”).value);
+
+ Let expense = parseFloat(document.getElementById(“expenseInput”).value);
+Let income = parseFloat(document.getElementById(“incomeInput”).value);
+
+ Let total = (income – expense).toFixed(2); // Calculate the total
+
+ // Get the table and insert a new row at the end
+
+ Let table = document.getElementById(“outputTable”);
+
+ Let newRow = table.insertRow(table.rows.length);
+
+ // Insert data into cells of the new row
+
+ newRow.insertCell(0).innerHTML = date;
+
+newRow.insertCell(1).innerHTML = expense.toFixed(2); // Display expense as a 
+
+number with 2 decimal places
+
+newRow.insertCell(2).innerHTML = income.toFixed(2); // Display income as a number 
+
+with 2 decimal places
+
+ newRow.insertCell(3).innerHTML = total; // Display total
+
+ newRow.insertCell(4).innerHTML =
+
+ ‘<button onclick=”editData(this)”>Edit</button>’ +
+
+ ‘<button onclick=”deleteData(this)”>Delete</button>’;
+
+ // Clear input fields
+
+ clearInputs();
+
+ }
+
+ Function editData(button) {
+
+ // Get the parent row of the clicked button
+
+ Let row = button.parentNode.parentNode;
+
+ // Get the cells within the row
+
+ Let dateCell = row.cells[0];
+
+ Let expenseCell = row.cells[1];
+
+ Let incomeCell = row.cells[2];
+
+ Let totalCell = row.cells[3];
+
+ // Prompt the user to enter updated values
+
+ Let dateInput = prompt(“Enter the updated date:”, dateCell.innerHTML);
+
+ Let expenseInput = parseFloat(prompt(“Enter the updated expense:”, 
+
+expenseCell.innerHTML));
+
+ Let incomeInput = parseFloat(prompt(“Enter the updated income:”, 
+
+incomeCell.innerHTML));
+
+ Let total = (incomeInput – expenseInput).toFixed(2); // Calculate the updated total
+
+ // Update the cell contents with the new values
+
+ dateCell.innerHTML = dateInput;
+
+ expenseCell.innerHTML = expenseInput.toFixed(2); // Display expense as a number 
+
+with 2 decimal places
+
+ incomeCell.innerHTML = incomeInput.toFixed(2); // Display income as a number with 
+
+2 decimal places
+
+ totalCell.innerHTML = total; // Update total
+
+ }
+
+ Function deleteData(button) {
+
+ // Get the parent row of the clicked button
+
+ Let row = button.parentNode.parentNode;
+// Remove the row from the table
+
+ Row.parentNode.removeChild(row);
+
+ }
+
+ Function clearInputs() {
+
+ // Clear input fields
+
+ Document.getElementById(“dateInput”).value = “”;
+
+ Document.getElementById(“expenseInput”).value = “”;
+
+ Document.getElementById(“incomeInput”).value = “”;
+
+ }
+
+ </script>
+
+</body>
+
+</html>
