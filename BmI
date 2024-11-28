@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>BMI Calculator</title>
+ <style>
+ .container {
+ background-color: #f2f2f2;
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ width: 400px;
+ margin: 0 auto;
+ text-align: center;
+}
+ input[type="number"] {
+ padding: 10px;
+ border-radius: 5px;
+ border: none;
+ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+ margin: 10px 0;
+ width: 95%;
+}
+ select {
+ padding: 10px;
+ border-radius: 10px;
+ border: none;
+ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+ margin: 10px 0;
+ width: 100%;
+ font-size: 16px;
+ color: #555;
+}
+ button {
+ background-color: #4CAF50;
+ color: white;
+ padding: 10px;
+border: none;
+
+ border-radius: 5px;
+
+ cursor: pointer;
+
+ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+ margin-top: 10px;
+
+ width: 100%;
+
+}
+
+ button:hover {
+
+ background-color: #3e8e41;
+
+}
+
+ input[type="text"] {
+
+ padding: 10px;
+
+ border-radius: 5px;
+
+ border: none;
+
+ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+ margin: 10px 0;
+
+ width: 95%;
+
+ font-size: 20px;
+
+ color: #f50202;
+
+ font-weight: bold;
+
+}
+
+ </style>
+
+</head>
+
+<body>
+
+ <div class="container">
+
+ <div class="row">
+
+ <h1>BMI Calculator</h1>
+
+ <div><b>Height (in cms)</b></div>
+
+ <input type="number" class="form-control" id="height" name="height" required>
+
+ <div><b>Weight (in kg)</b></div>
+
+ <input type="number" class="" id="weight" name="weight" required>
+
+ <div><b>Gender</b></div>
+
+ <select id="gender" name="gender" required>
+
+ <option value="male">Male</option>
+
+ <option value="female">Female</option>
+
+ </select>
+
+ <button onclick="calculateBMI()">Calculate BMI</button>
+
+ <div><b>Your BMI</b></div>
+
+ <input type="text" id="result" name="result" readonly>
+
+ </div>
+
+ </div>
+
+ <script>
+
+ function calculateBMI() {
+
+ let height = document.getElementById("height").value;
+
+ let weight = document.getElementById("weight").value;
+
+ let gender = document.getElementById("gender").value;
+
+ let bmi;
+
+ if (gender == "male") {
+
+ bmi =(weight / ((height / 100) ** 2
+} else {
+bmi = (weight / ((height / 100) ** 2));
+
+}
+
+ document.getElementById("result").value = bmi.toFixed(2);
+
+}
+
+ </script>
+
+</body>
+
+</html>
