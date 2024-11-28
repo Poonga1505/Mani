@@ -1,0 +1,89 @@
+Here is a simple Todo List code in HTML, CSS, and JavaScript:
+
+HTML:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="task" placeholder="Enter task">
+    <button id="add-task">Add Task</button>
+    <ul id="task-list"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+CSS (in style.css file):
+
+```
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#task-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#task-list li:last-child {
+    border-bottom: none;
+}
+
+#task-list li.completed {
+    text-decoration: line-through;
+    color: #666;
+}
+```
+
+JavaScript (in script.js file):
+
+```
+let taskList = document.getElementById('task-list');
+let taskInput = document.getElementById('task');
+let addTaskButton = document.getElementById('add-task');
+
+let tasks = [];
+
+addTaskButton.addEventListener('click', addTask);
+
+function addTask() {
+    let task = taskInput.value.trim();
+    if (task) {
+        tasks.push({ task, completed: false });
+        renderTaskList();
+        taskInput.value = '';
+    }
+}
+
+function renderTaskList() {
+    taskList.innerHTML = '';
+    tasks.forEach((task, index) => {
+        let taskElement = document.createElement('li');
+        taskElement.textContent = task.task;
+        if (task.completed) {
+            taskElement.classList.add('completed');
+        }
+        taskElement.addEventListener('click', () => {
+            tasks[index].completed = !tasks[index].completed;
+            renderTaskList();
+        });
+        taskList.appendChild(taskElement);
+    });
+}
+```
